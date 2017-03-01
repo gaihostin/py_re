@@ -48,10 +48,10 @@ class skip_ost(object):
     
     def filter_ost(self, name):
         name_bak = self.brackets_patt.sub("", name)
-        if len(name_bak) != len(name):
+        if len(name_bak) != len(name) and len(name_bak.strip()) != 0:
             return name_bak
         name_bak = self.ost_patt.sub("", name) 
-        if len(name_bak) != len(name):
+        if len(name_bak) != len(name) and len(name_bak.strip()) != 0:
             return name_bak
 
 
@@ -63,7 +63,9 @@ class skip_ost(object):
                 max_len = len(key)
 
         name_bak = name.replace(match_key, "")
-        return name_bak
+        if len(name_bak) != 0:
+            return name_bak
+        return name
 
 
 if __name__ == "__main__":
