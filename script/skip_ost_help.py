@@ -47,12 +47,13 @@ class skip_ost(object):
             self.ost_keys.append(line)
     
     def filter_ost(self, name):
+        name = name.encode('utf-8')
         name_bak = self.brackets_patt.sub("", name)
         if len(name_bak) != len(name) and len(name_bak.strip()) != 0:
-            return name_bak
+            return name_bak.decode('utf-8')
         name_bak = self.ost_patt.sub("", name) 
         if len(name_bak) != len(name) and len(name_bak.strip()) != 0:
-            return name_bak
+            return name_bak.decode('utf-8')
 
 
         match_key = ""
@@ -64,8 +65,8 @@ class skip_ost(object):
 
         name_bak = name.replace(match_key, "")
         if len(name_bak) != 0:
-            return name_bak
-        return name
+            return name_bak.decode('utf-8')
+        return name.decode('utf-8')
 
 
 if __name__ == "__main__":
